@@ -1,0 +1,450 @@
+using System;
+
+namespace Calculator_Assignment
+{
+    class Program
+    {
+        static double Number;
+        static char Symbol;
+
+        static double NextNumber;
+        static double result;
+        static double NextResult;
+        static double ResultNo3;
+        static double ResultNo4;
+             
+
+        static void Main(string[] args)
+        {
+
+            while (true)
+            {
+                Console.WriteLine("Welcome to my Calculator");
+                Console.WriteLine("Rules of this calculator are : " +
+                "no 1 = You can just calculate four times | " +
+                "no 2 = you can just type numbers and opperators in proper places ");
+
+                try
+                {
+                    asknumber();
+                    while (true)
+                    {
+                        try
+                        {
+                            askingOpperator();
+                            while (true)
+                            {
+                                try
+                                {
+                                    Yesorno();
+                                    while(true)
+                                    {
+                                        try
+                                        {
+                                            YesornoNumber2();
+                                          while (true)
+                                            {
+                                                try
+                                                {
+                                                    YesornoNumber3();
+                                                }
+                                                catch(FormatException)
+                                                {
+                                                    Console.WriteLine("Just input 1 letter not 2 or more");
+                                                }
+                                            }
+                                        }
+                                        catch(FormatException)
+                                        {
+                                            Console.WriteLine("Just input 1 letter not 2 or more");
+                                        }
+                                    }
+
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("Just input 1 letter not 2 or more");
+                                }
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("This calculator can't read this type of word , Just enter in proper way next time");
+                        }
+
+                    } 
+
+                    
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("This calculator can't read this type of word , Just enter in proper way next time");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("That's too many, this calculate cant show it!");
+                }
+               
+            }
+          
+        
+            static void asknumber()
+            {
+             
+                Console.WriteLine("Enter number that you want to Calculate(But not with alphabet)");
+                Number = Convert.ToDouble(Console.ReadLine());
+                
+                Console.WriteLine("Enter next number");
+                NextNumber = Convert.ToDouble((Console.ReadLine()));
+               
+            }
+            static void askingOpperator()
+            {
+                Console.WriteLine("Enter symbole(+ , - , * , /)");
+                Symbol = Convert.ToChar(Console.ReadLine());
+                switching();
+                
+
+            }
+           
+            static double switching()
+            {
+                switch (Symbol)
+                {
+                    case '+':
+                        result = Number + NextNumber;
+                        Console.WriteLine(result);
+                        Yesorno();
+                        break;
+                    case '-':
+                        result = Number - NextNumber;
+                        Console.WriteLine(result);
+                        Yesorno();
+                        break;
+                    case '*':
+                        result = Number * NextNumber;
+                        Console.WriteLine(result);
+                        Yesorno();
+                        break;
+                    case '/':
+                        result = Number / NextNumber;
+                        Console.WriteLine(result);
+                        Yesorno();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operator,try again");
+
+                        break;
+
+
+                }
+                return result;
+
+            }
+            static void Yesorno()
+            {
+                while (true)
+                {
+                    Console.WriteLine("Do you want more?If yes type 'y'.Or else type any key");
+                    string YesorNo = (Console.ReadLine());
+                    bool swichingTorF = YesorNo == "y" || YesorNo == "Y";
+                    if (swichingTorF)
+                    {
+                        repeat();
+                    }
+                    else
+                    {
+                        end();
+                    }
+                }
+              
+            }
+
+            static void repeat()
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Enter number that you want to Calculate(But not with alphabet)");
+                        Number = Convert.ToDouble(Console.ReadLine());
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Enter symbole(+ , - , * , /)");
+                                Symbol = Convert.ToChar(Console.ReadLine());
+                                NextSwicthing();
+                            }
+                            catch(FormatException)
+                            {
+                                Console.WriteLine("Please type carefully , Just type something that the calculator ask");
+                            }
+                          
+                        }
+
+                      
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Please type carefully , Just type something that the calculator ask");
+                    }
+
+                }
+              
+            }
+
+
+            static double NextSwicthing()
+            {
+                switch (Symbol)
+                {
+                    case '+':
+                        NextResult = result + Number;
+                        Console.WriteLine(NextResult);
+                        YesornoNumber2();
+                        break;
+                    case '-':
+                        NextResult = result - Number;
+                        Console.WriteLine(NextResult);
+                        YesornoNumber2();
+                        break;
+                    case '*':
+                        NextResult = result * Number;
+                        Console.WriteLine(NextResult);
+                        YesornoNumber2();
+                        break;
+                    case '/':
+                        NextResult = result / Number;
+                        Console.WriteLine(NextResult);
+                        YesornoNumber2();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operator,try again");
+                        end();
+                        break;
+
+                }
+                return NextResult;
+            }
+            static void YesornoNumber2()
+            {
+                Console.WriteLine("Do you want more?If yes type 'y'.Or else type any key you want");
+                string YesorNo = (Console.ReadLine());
+                bool swichingTorF = YesorNo == "y" || YesorNo == "Y";
+                if (swichingTorF)
+                {
+                    repeatSecondTime();
+                }
+                else
+                {
+                    end();
+                }
+            }
+            static void repeatSecondTime()
+            {
+                     while(true)
+                {
+
+                    try
+                    {
+                        Console.WriteLine("Enter number that you want to Calculate(But not with alphabet)");
+                        Number = Convert.ToDouble(Console.ReadLine());
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Enter symbole(+ , - , * , /)");
+                                Symbol = Convert.ToChar(Console.ReadLine());
+                                SwicthingThirdtime();
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Please type carefully , Just type something that the calculator ask");
+                            }
+
+                        }
+                       
+                    }
+                    catch(FormatException)
+                    {
+                        Console.WriteLine("Please type carefully , Just type something that the calculator ask");
+                    }
+                    
+                }
+              
+
+            }
+
+
+            static double SwicthingThirdtime()
+            {
+                switch (Symbol)
+                {
+                    case '+':
+                       ResultNo3= NextResult + Number;
+                        Console.WriteLine(ResultNo3);
+                        YesornoNumber3();
+                        break;
+                    case '-':
+                        ResultNo3 = NextResult - Number;
+                        Console.WriteLine(ResultNo3);
+                        YesornoNumber3();
+                        break;
+                    case '*':
+                        ResultNo3 = NextResult * Number;
+                        Console.WriteLine(ResultNo3);
+                        YesornoNumber3();
+                        break;
+                    case '/':
+                        ResultNo3 = NextResult / Number;
+                        Console.WriteLine(ResultNo3);
+                        YesornoNumber3();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operator,try again");
+                        end();
+                        break;
+
+                }
+                return ResultNo3;
+            }
+            static void YesornoNumber3()
+            {
+                Console.WriteLine("Do you want more?If yes type 'y'.Or else type any key you want");
+                string YesorNo = (Console.ReadLine());
+                bool swichingTorF = YesorNo == "y" || YesorNo == "Y";
+                if (swichingTorF)
+                {
+                    repeatThirdTime();
+                }
+                else
+                {
+                    end();
+                }
+            }
+            static void repeatThirdTime()
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Enter number that you want to Calculate(But not with alphabet)");
+                        Number = Convert.ToDouble(Console.ReadLine());
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Enter symbole(+ , - , * , /)");
+                                Symbol = Convert.ToChar(Console.ReadLine());
+                                Swicthingfourthtime();
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Please type carefully , Just type something that the calculator ask");
+                            }
+                          
+                        }
+                       
+                    }
+                    catch(FormatException)
+                    {
+                        Console.WriteLine("Please type carefully , Just type something that the calculator ask");
+                    }
+                
+                }
+            }
+
+
+            static double Swicthingfourthtime()
+            {
+                switch (Symbol)
+                {
+                    case '+':
+                        ResultNo4 = ResultNo3 + Number;
+                        Console.WriteLine(ResultNo4);
+                      
+                        end();
+                        break;
+                    case '-':
+                        ResultNo4 = ResultNo3 - Number;
+                        Console.WriteLine(ResultNo4);
+                       
+                        end();
+                        break;
+                    case '*':
+                        ResultNo4 = ResultNo3 * Number;
+                        Console.WriteLine(ResultNo4);
+                        
+                        end();
+                        break;
+                    case '/':
+                        ResultNo4 = ResultNo3 / Number;
+                        Console.WriteLine(ResultNo4);
+                       
+                        end();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operator,try again");
+                        end();
+                        break;
+
+                }
+                return ResultNo3;
+            }
+
+
+            static void end()
+            {
+                Console.WriteLine("This calculator has end ,It will restart by itself");
+                while (true)
+                {
+                    Console.WriteLine("Welcome to my Calculator");
+                    Console.WriteLine("Rules of this calculator are : " +
+                    "no 1 = You can just calculate four times | " +
+                    "no 2 = you can just type numbers and opperators in proper places ");
+
+                    try
+                    {
+                        asknumber();
+                        while (true)
+                        {
+                            try
+                            {
+                                askingOpperator();
+                                while (true)
+                                {
+                                    try
+                                    {
+                                        Yesorno();
+
+                                    }
+                                    catch (FormatException)
+                                    {
+                                        Console.WriteLine("Just input 1 letter not 2 or more");
+                                    }
+                                }
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("This calculator can't read this type of word , Just enter in proper way next time");
+                            }
+
+                        }
+
+
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("This calculator can't read this type of word , Just enter in proper way next time");
+                    }
+                    catch (OverflowException)
+                    {
+                        Console.WriteLine("That's too many, this calculate cant show it!");
+                    }
+
+                }
+            }
+        }
+    }
+}
